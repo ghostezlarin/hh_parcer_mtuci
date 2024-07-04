@@ -1,0 +1,6 @@
+user = "*"
+password = "*"
+host = "*"
+port = "*"
+database = "*"
+# options="-c client_encoding=UTF8"
