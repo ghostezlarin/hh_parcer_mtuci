@@ -10,7 +10,7 @@
 **hh_table CREATE script.sql** - SQL скрипт для создания таблицы, для записи результатов парсинга по запросу из telegram бота. \
 **hh_parcing_id_seq.sql** - SQL sequence для таблицы hh_table. \
 **telegram_bot_table CREATE script.sql** - SQL скрипт для создания таблицы, для записи информации о telegram пользователе, а также содержание запроса пользователя. \
-**telegram_table_id_seq.sql** - SQL sequence для таблицы telegram_table. \
+**telegram_table_id_seq.sql** - SQL sequence для таблицы telegram_table. 
 # Для запуска программы необходимо:
 1) Развернуть DockerFile с помощью docker-compose.
 2) В случае отсутствия Docker Desktop, для работы программы необоходимо установить:
