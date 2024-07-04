@@ -12,7 +12,7 @@
 **telegram_bot_table CREATE script.sql** - SQL скрипт для создания таблицы, для записи информации о telegram пользователе, а также содержание запроса пользователя. \
 **telegram_table_id_seq.sql** - SQL sequence для таблицы telegram_table. 
 # Для запуска программы необходимо:
-Развернуть Docker.
+Запустить DockerFile с помощью docker-compose.
 
 В случае невозможности развернуть программу в Docker, для работы программы необходимо установить:
 
