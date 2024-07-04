@@ -5,12 +5,15 @@
 **main.py** - основная программа, которая запускает телеграмм бота в качестве интерфейса для ввода параметров для парсинга платформы hh.ru. \
 **api_hh.py** - модуль, реализующий отправку HTTP запросов к сайту api.hh.ru . \
 **db_helper.py** - модуль, реалзиующий работу с базой данной PostgreSQL, а также за вывод отработанных команд /search и /analytics. \
-**SQL_code** - модуль, хранящий SQL скрипты, для работы модуля db_helper. \
+**SQL_code.py** - модуль, хранящий SQL скрипты, для работы модуля db_helper. \
 **connection_db_constant.py** - модуль хранящий константы, для подключения к базе данных. \
 **hh_table CREATE script.sql** - SQL скрипт для создания таблицы, для записи результатов парсинга по запросу из telegram бота. \
 **hh_parcing_id_seq.sql** - SQL sequence для таблицы hh_table. \
 **telegram_bot_table CREATE script.sql** - SQL скрипт для создания таблицы, для записи информации о telegram пользователе, а также содержание запроса пользователя. \
-**telegram_table_id_seq.sql** - SQL sequence для таблицы telegram_table. 
+**telegram_table_id_seq.sql** - SQL sequence для таблицы telegram_table.\
+**Dockerfile** - докер-контейнер, необходимый для запуска программы.\
+**requirements.txt** - необходимые библиотеки python. \
+**compose.yaml** - необходимый файл для зпуска докера.
 # Для запуска программы необходимо:
 Запустить DockerFile с помощью docker-compose.
 
