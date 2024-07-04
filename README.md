@@ -17,7 +17,7 @@
 
 Python 3.12
 Библиотека pyTelegramBotAPI(или же telebot) \
-Библиотека psycopg2 \
+Библиотека psycopg2 
 
 После чего необходимо в консоль ввести команду: python main.py
 
