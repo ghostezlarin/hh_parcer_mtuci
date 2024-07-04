@@ -16,8 +16,8 @@
 2) В случае отсутствия Docker Desktop, для работы программы необоходимо установить:
 
 Python 3.12
-Библиотека pyTelegramBotAPI(или же telebot)
-Библиотека psycopg2
+Библиотека pyTelegramBotAPI(или же telebot) \
+Библиотека psycopg2 \
 
 После чего необходимо в консоль ввести команду: python main.py
 
