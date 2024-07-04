@@ -12,12 +12,13 @@
 **telegram_bot_table CREATE script.sql** - SQL скрипт для создания таблицы, для записи информации о telegram пользователе, а также содержание запроса пользователя. \
 **telegram_table_id_seq.sql** - SQL sequence для таблицы telegram_table. 
 # Для запуска программы необходимо:
-1) Развернуть DockerFile с помощью docker-compose.
-2) В случае отсутствия Docker Desktop, для работы программы необоходимо установить:
+Развернуть DockerFile с помощью docker-compose.
 
-Python 3.12
-Библиотека pyTelegramBotAPI(или же telebot) \
-Библиотека psycopg2 
+В случае отсутствия Docker Desktop, для работы программы необоходимо установить:
+
+1)Python 3.12\
+2)Библиотека pyTelegramBotAPI(или же telebot) \
+3)Библиотека psycopg2 
 
 После чего необходимо в консоль ввести команду: python main.py
 
