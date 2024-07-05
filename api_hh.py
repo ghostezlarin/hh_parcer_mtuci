@@ -55,7 +55,7 @@ def get_data_page(text: str, salary: str, employment: str, page: int, telegram_i
     except Exception as e:
         r["error_code"] = -2
         r["error_description"] = e.__str__()
-        print(f"get_data_page Exception: {r["error_description"]}")
+        print(f"get_data_page Exception: {r['error_description']}")
     return r
 
 #функция обработки записи в датабазу

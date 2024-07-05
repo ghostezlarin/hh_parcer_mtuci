@@ -5,12 +5,12 @@ from db_helper import get_analytics
 from api_hh import get_data_all
 
 #токен бота
-token = "*"
+token = "7327685574:AAHzjFyul8wLcLaYlpWt8doLLQfrugtt660"
 
 #инициализация бота
 bot = telebot.TeleBot(f"{token}")
 
-#словарь для просмотра сессии пользователя
+#словарь для просмотра сесси пользователя
 sessions: dict = {}
 
 #словарь с переменными для параметров запроса на api.hh.ru
@@ -67,15 +67,15 @@ def analytics(message):
         analytics_answer = get_analytics(id_telegram)
         print(analytics_answer)
         if analytics_answer["error_code"] == 0:
-            bot.reply_to(message, f"Минимальная зарплата от: {analytics_answer["min_salary_from"]}\n"
-                                  f"Максимальная зарплата от: {analytics_answer["max_salary_from"]}\n"
-                                  f"Средняя зарплата от: {analytics_answer["avg_salary_from"]}\n"
-                                  f"Минимальная зарплата от: {analytics_answer["min_salary_to"]}\n"
-                                  f"Максимальная зарплата от: {analytics_answer["max_salary_to"]}\n"
-                                  f"Средняя зарплата от: {analytics_answer["avg_salary_to"]}\n"
-                                  f"Колличество найденых вакансий: {analytics_answer["resumes_count"]}\n"
-                                  f"Колличество пустых вакансий и их процент: {analytics_answer["resumes_zero"]}; {analytics_answer["resumes_static_zero_analytic"]}%\n"
-                                  f"Колличество вакансий с зарплатой и их процент: {analytics_answer["resumes_with_salary"]}; {analytics_answer["resumes_with_salary_analytic"]}%")
+            bot.reply_to(message, f"Минимальная зарплата от: {analytics_answer['min_salary_from']}\n"
+                                  f"Максимальная зарплата от: {analytics_answer['max_salary_from']}\n"
+                                  f"Средняя зарплата от: {analytics_answer['avg_salary_from']}\n"
+                                  f"Минимальная зарплата от: {analytics_answer['min_salary_to']}\n"
+                                  f"Максимальная зарплата от: {analytics_answer['max_salary_to']}\n"
+                                  f"Средняя зарплата от: {analytics_answer['avg_salary_to']}\n"
+                                  f"Колличество найденых вакансий: {analytics_answer['resumes_count']}\n"
+                                  f"Колличество пустых вакансий и их процент: {analytics_answer['resumes_zero']}; {analytics_answer['resumes_static_zero_analytic']}%\n"
+                                  f"Колличество вакансий с зарплатой и их процент: {analytics_answer['resumes_with_salary']}; {analytics_answer['resumes_with_salary_analytic']}%")
         else:
             if analytics_answer["error_code"] == -12:
                 bot.reply_to(message, "По последнему запросу не найдено ни одной вакансии.")
