@@ -6,77 +6,77 @@ from SQL_code import const_salary_from, const_salary_to, const_resumes_all, cons
 from connection_db_constant import user, password, host, port, database
 
 #функция записи в таблицу связанную с парсингом сайта api.hh.ru
-def write_to_hh_table(dict_of_fields: dict, request_id: int):
-    hh_id: int = 0
-    hh_name: str = ""
-    hh_salary_null: int = 0
-    hh_salary_from: int = 0
-    hh_salary_to: int = 0
-    hh_schedule: str = ''
-    hh_employment: str = ''
-    error_code: int = 0
-    error_description: str = ''
-    connection = 0
-    try:
-        hh_id = dict_of_fields["id"]
-        # print(hh_id)
-
-        hh_name = dict_of_fields["name"]
-        # print(hh_name)
-
-        if not (isinstance(dict_of_fields["salary"], types.NoneType)):
-            if not (isinstance(dict_of_fields["salary"]["from"], types.NoneType)):
-                hh_salary_from = dict_of_fields["salary"]["from"]
-
-            if not (isinstance(dict_of_fields["salary"]["to"], types.NoneType)):
-                hh_salary_to = dict_of_fields["salary"]["to"]
-            # print(hh_salary_from)
-            # print(hh_salary_to)
-        else:
-            hh_salary_null = 1
-
-        if not (isinstance(dict_of_fields["schedule"], types.NoneType)):
-            hh_schedule = dict_of_fields["schedule"]["name"]
-        # print(hh_schedule)
-
-        if not (isinstance(dict_of_fields["employment"], types.NoneType)):
-            hh_employment = dict_of_fields["employment"]["name"]
-        # print(hh_employment)
-
-        # print('---------------------------------------------')
-    except Exception as e:
-        error_code = -6
-        error_description = e.__str__()
-        print("Error qqq")
-        print(error_description)
-        print(dict_of_fields)
-    try:
-        connection = psycopg2.connect(user=user,
-                                      password=password,
-                                      host=host,
-                                      port=port,
-                                      database=database)
-    except Exception as e:
-        error_code = -3
-        error_description = e.__str__()
-        print(error_description)
-
-    if error_code == 0:
-        try:
-            cursor = connection.cursor()
-            insert_query = """INSERT INTO hh_table (status, hh_id, hh_name, hh_salary_null,  hh_salary_from, hh_salary_to, hh_employment, hh_schedule, request_id) VALUES (1, %s, %s, %s, %s, %s, %s, %s, %s)"""
-            record_to_insert = (
-                hh_id, hh_name, hh_salary_null, hh_salary_from, hh_salary_to, hh_employment, hh_schedule, request_id)
-            cursor.execute(insert_query, record_to_insert)
-            connection.commit()
-        except Exception as e:
-            print(e.__str__())
-            error_code = -6
-            error_description = e.__str__()
-
-        connection.close()
-
-    return {"error_code": error_code, "error_description": error_description}
+# def write_to_hh_table(dict_of_fields: dict, request_id: int):
+#     hh_id: int = 0
+#     hh_name: str = ""
+#     hh_salary_null: int = 0
+#     hh_salary_from: int = 0
+#     hh_salary_to: int = 0
+#     hh_schedule: str = ''
+#     hh_employment: str = ''
+#     error_code: int = 0
+#     error_description: str = ''
+#     connection = 0
+#     try:
+#         hh_id = dict_of_fields["id"]
+#         # print(hh_id)
+#
+#         hh_name = dict_of_fields["name"]
+#         # print(hh_name)
+#
+#         if not (isinstance(dict_of_fields["salary"], types.NoneType)):
+#             if not (isinstance(dict_of_fields["salary"]["from"], types.NoneType)):
+#                 hh_salary_from = dict_of_fields["salary"]["from"]
+#
+#             if not (isinstance(dict_of_fields["salary"]["to"], types.NoneType)):
+#                 hh_salary_to = dict_of_fields["salary"]["to"]
+#             # print(hh_salary_from)
+#             # print(hh_salary_to)
+#         else:
+#             hh_salary_null = 1
+#
+#         if not (isinstance(dict_of_fields["schedule"], types.NoneType)):
+#             hh_schedule = dict_of_fields["schedule"]["name"]
+#         # print(hh_schedule)
+#
+#         if not (isinstance(dict_of_fields["employment"], types.NoneType)):
+#             hh_employment = dict_of_fields["employment"]["name"]
+#         # print(hh_employment)
+#
+#         # print('---------------------------------------------')
+#     except Exception as e:
+#         error_code = -6
+#         error_description = e.__str__()
+#         print("Error qqq")
+#         print(error_description)
+#         print(dict_of_fields)
+#     try:
+#         connection = psycopg2.connect(user=user,
+#                                       password=password,
+#                                       host=host,
+#                                       port=port,
+#                                       database=database)
+#     except Exception as e:
+#         error_code = -3
+#         error_description = e.__str__()
+#         print(error_description)
+#
+#     if error_code == 0:
+#         try:
+#             cursor = connection.cursor()
+#             insert_query = """INSERT INTO hh_table (status, hh_id, hh_name, hh_salary_null,  hh_salary_from, hh_salary_to, hh_employment, hh_schedule, request_id) VALUES (1, %s, %s, %s, %s, %s, %s, %s, %s)"""
+#             record_to_insert = (
+#                 hh_id, hh_name, hh_salary_null, hh_salary_from, hh_salary_to, hh_employment, hh_schedule, request_id)
+#             cursor.execute(insert_query, record_to_insert)
+#             connection.commit()
+#         except Exception as e:
+#             print(e.__str__())
+#             error_code = -6
+#             error_description = e.__str__()
+#
+#         connection.close()
+#
+#     return {"error_code": error_code, "error_description": error_description}
 
 #Функиця записи данных о пользователе(Его telegram id, а также содержание запроса) в датабазу, для дальнейшей аналитики
 def write_to_telegram_db(telegram_id: int, text: str, salary: int, employment: str):

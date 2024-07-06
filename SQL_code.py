@@ -1,14 +1,14 @@
 const_test = "SELECT * FROM hh_table"
-const_salary_from: str = '''SELECT MIN(t.salary_to), MAX(t.salary_to), AVG(t.salary_to) FROM 
+const_salary_from: str = '''SELECT MIN(t.salary_from), MAX(t.salary_from), AVG(t.salary_from) FROM 
 	(
-SELECT id, hh_salary_to "salary_to"
+SELECT id, hh_salary_to "salary_from"
 	FROM public.hh_table 
 	WHERE request_id=%s --AND hh_salary_null=0 
 	AND hh_salary_to!=0 
 
 UNION ALL
 
-SELECT id, hh_salary_from "salary_to"
+SELECT id, hh_salary_from "salary_from"
 	FROM public.hh_table 
 	WHERE request_id=%s AND hh_salary_null=0 
 	AND hh_salary_to=0 

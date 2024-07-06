@@ -1,22 +1,23 @@
-#импорт библиотек и модулей
+# импорт библиотек и модулей
 import telebot
 import re
 from db_helper import get_analytics
 from api_hh import get_data_all
 
-#токен бота
+# токен бота
 token = "7327685574:AAHzjFyul8wLcLaYlpWt8doLLQfrugtt660"
 
-#инициализация бота
+# инициализация бота
 bot = telebot.TeleBot(f"{token}")
 
-#словарь для просмотра сесси пользователя
+# словарь для просмотра сессии пользователя
 sessions: dict = {}
 
-#словарь с переменными для параметров запроса на api.hh.ru
+# словарь с переменными для параметров запроса на api.hh.ru
 employment_dict = {"1": "full", "2": "part", "3": "project", "4": "volunteer", "5": "probation"}
 
-#Функция для проверки является ли введеная строка числом
+
+# Функция для проверки является ли введеная строка числом
 def Is_Int(s: str):
     try:
         int(s)
@@ -24,13 +25,15 @@ def Is_Int(s: str):
     except ValueError:
         return False
 
-#обработка команды /start и /help
+
+# обработка команды /start и /help
 @bot.message_handler(commands=["start", "help"])
 def send_help(message):
     bot.reply_to(message, "Для парсинга в БД по вашему запросу - введите:\n/search \n\n"
                           "Для получения аналитики - введите:\n/analytics ")
 
-#Команда для мини игры /slots, является функцией для проверки работоспособности бота
+
+# Команда для мини игры /slots, является функцией для проверки работоспособности бота
 @bot.message_handler(commands=["slots"])
 def slots(message):
     try:
@@ -39,7 +42,8 @@ def slots(message):
     except Exception as e:
         print(e.__str__())
 
-#обработка команды /search
+
+# обработка команды /search
 @bot.message_handler(commands=["search"])
 def search(message):
     try:
@@ -59,7 +63,8 @@ def search(message):
         print("exexe")
         print(e.__str__())
 
-#функция обработки /analytics
+
+# функция обработки /analytics
 @bot.message_handler(commands=["analytics"])
 def analytics(message):
     try:

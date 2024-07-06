@@ -1,9 +1,10 @@
-#импорт библиотек
+# импорт библиотек
 import db_helper
 import requests
 import json
 
-#функция получения всех страниц по HTTP запрос к api.hh.ru
+
+# функция получения всех страниц по HTTP запрос к api.hh.ru
 def get_data_all(text: str, salary: str, employment: str, telegram_id: int):
     print("Start get_data_all")
     error_code = 0
@@ -23,7 +24,8 @@ def get_data_all(text: str, salary: str, employment: str, telegram_id: int):
         print(f"get_data_all Exception: {error_description}")
     return {"error_code": error_code, "error_description": error_description}
 
-#Функция получения нужной нам информации со страницы
+
+# Функция получения нужной нам информации со страницы
 def get_data_page(text: str, salary: str, employment: str, page: int, telegram_id: int, request_id: int):
     url = "https://api.hh.ru/vacancies/"
     r = {"error_code": 0, "error_description": "", "data": 0}
@@ -34,9 +36,6 @@ def get_data_page(text: str, salary: str, employment: str, page: int, telegram_i
         "per_page": 100,
         "page": page
     }
-    result = ""
-    data = {}
-    name_dict = {}
     try:
         response = requests.get(url, params=params)
         if response.status_code == 200:
@@ -58,16 +57,17 @@ def get_data_page(text: str, salary: str, employment: str, page: int, telegram_i
         print(f"get_data_page Exception: {r['error_description']}")
     return r
 
-#функция обработки записи в датабазу
-def write_data_to_db(list_of_dict: list, request_id: int):
-    try:
-        for i in range(len(list_of_dict)):
-            db_helper.write_to_hh_table(list_of_dict[i], request_id)
-    except Exception as e:
-        error_code = -6
-        error_description = e.__str__()
-        print(f"write_data_to_db Exception: {error_description}")
-    return
+
+# функция обработки записи в датабазу
+# def write_data_to_db(list_of_dict: list, request_id: int):
+#     try:
+#         for i in range(len(list_of_dict)):
+#             db_helper.write_to_hh_table(list_of_dict[i], request_id)
+#     except Exception as e:
+#         error_code = -6
+#         error_description = e.__str__()
+#         print(f"write_data_to_db Exception: {error_description}")
+#     return
 
 
 if __name__ == "__main__":
