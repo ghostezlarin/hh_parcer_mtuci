@@ -5,7 +5,7 @@ from db_helper import get_analytics
 from api_hh import get_data_all
 
 # токен бота
-token = "7327685574:AAHzjFyul8wLcLaYlpWt8doLLQfrugtt660"
+token = "*"
 
 # инициализация бота
 bot = telebot.TeleBot(f"{token}")
